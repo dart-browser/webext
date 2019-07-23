@@ -1,0 +1,17 @@
+name: webext
+version: 0.1.0
+description: Browser extension format shared by Chrome, Edge, and Firefox.
+homepage: https://github.com/terrier989/webext
+author: terrier989 <terrier989@gmail.com>
+
+environment:
+  sdk: '>=2.4.0 <3.0.0'
+
+dependencies:
+  args: ^1.5.2
+  meta: ^1.1.7
+  js: ^0.6.1
+
+dev_dependencies:
+  pedantic: ^1.8.0
+  test: ^1.6.5
