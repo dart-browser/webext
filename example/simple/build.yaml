@@ -7,4 +7,4 @@ targets:
           dart2js_args:
             - --csp
             - --disable-inlining
-            - -O1
+            - -O3

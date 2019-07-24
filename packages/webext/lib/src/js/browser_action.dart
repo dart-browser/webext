@@ -2,6 +2,7 @@
 library webext.js.browseraction;
 
 import 'dart:html';
+
 import 'package:js/js.dart';
 
 @JS()

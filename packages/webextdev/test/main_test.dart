@@ -1,12 +1,13 @@
 import 'dart:io';
+
 import 'package:test/test.dart';
 
 void main() {
   group("Commands: ", () {
-    final name = "hello";
+    final name = "TEST_PROJECT";
 
     setUpAll(() {
-      _createWebExtension(name);
+      _create(name);
     });
 
     tearDownAll(() {
@@ -16,20 +17,24 @@ void main() {
       }
     });
 
-    test("webext create hello", () {
+    test("'webext create $name'", () {
       // Test 'pubspec.yaml'
       expect(File("$name/pubspec.yaml").existsSync(), isTrue);
       expect(File("$name/pubspec.yaml").readAsStringSync(),
           contains("name: $name\n"));
     });
 
-    test("webext build", () {
-      _buildWebExtension(name);
+    test("'webext build'", () {
+      _build(name);
+    });
+
+    test("'webext pack'", () {
+      _pack(name);
     });
   });
 }
 
-void _createWebExtension(String name) {
+void _create(String name) {
   final directory = Directory(name);
   if (directory.existsSync()) {
     directory.deleteSync(recursive: true);
@@ -39,7 +44,7 @@ void _createWebExtension(String name) {
   _run("pub", ["run", "webextdev", "create", name]);
 }
 
-void _buildWebExtension(String name) {
+void _build(String name) {
   // Append dependency overrides
   File("$name/pubspec.yaml").writeAsStringSync("""
 
@@ -55,6 +60,14 @@ dependency_overrides:
 
   // Run 'webext build'
   _run("pub", ["run", "webextdev", "build"], directory: name, exitCode: null);
+}
+
+void _pack(String name) {
+  // Run 'webext build'
+  _run("pub", ["run", "webextdev", "pack", "example.zip"],
+      directory: name, exitCode: null);
+
+  expect(File("$name/example.zip").existsSync(), isTrue);
 }
 
 void _run(String executable, List<String> args,

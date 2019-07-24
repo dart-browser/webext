@@ -1,17 +1,19 @@
 library webext;
 
-import 'src/js/browser_action.dart' as js;
-import 'src/js/tabs.dart' as js;
-import 'src/js/notifications.dart' as js;
-import 'src/js/runtime.dart' as js;
-import 'src/js/webext.dart' as js;
-import 'package:js/js.dart' as js;
 import 'dart:async';
 import 'dart:js' as js;
-import 'src/js/tabs.dart' show Tab;
-export 'src/js/tabs.dart' show Tab;
-import 'package:meta/meta.dart';
+
+import 'package:js/js.dart' as js;
 import 'package:webext/webext.dart';
+
+import 'src/js/browser_action.dart' as js;
+import 'src/js/notifications.dart' as js;
+import 'src/js/runtime.dart' as js;
+import 'src/js/tabs.dart' as js;
+import 'src/js/tabs.dart' show Tab;
+import 'src/js/webext.dart' as js;
+
+export 'src/js/tabs.dart' show Tab;
 
 class BrowserAction {
   /// Singleton instance of [BrowserAction].
